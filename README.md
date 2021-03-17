@@ -14,19 +14,13 @@ There are a few prerequisites to use this script. These are:
 3. Copy the files (Add-OAVPNTunnels, New-AovpnConnection, profileXML_device and profileXML_device) to a network location that client devices can access to copy the files locally. I have chosen to use the folder that stores that Group Policy created earlier for central mangement and fault tolerance as the files will be replicated to all domain controllers.  
 4. Enable the following Preferences in the new policy:
    * Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
+   * In the general tab, configure the source folder for your script and ProfileXML files followed by \\*
+   * Specify a local destination folder. I have chosen to create a new folder under the Windows directory. GPP will automaticall create the folder if it is missing.
+   * Make sure the Action is replace.
+   * In the common tab check the box 'Remove this item when it is no longer required'
 
-<p align="center">
-  <img width="401" height="454" src="/GPPCreateFileGeneral.JPG?raw=true">
-</p>
-
-   - In the general tab, configure the source folder for your script and ProfileXML files followed by \\*
-   - Specify a local destination folder. I have chosen to create a new folder under the Windows directory. GPP will automaticall create the folder if it is missing.
-   - Make sure the Action is replace.
-<p align="center">
-  <img width="401" height="454" src="/GPPCreateFileCommon.JPG?raw=true">
-</p>
-
-  - In the common tab check the box 'Remove this item when it is no longer required'
+![alt text](/GPPCreateFileGeneral.JPG?raw=true "GPP Files general tab")
+![alt text](/GPPCreateFileCommon.JPG?raw=true "GPP Files common tab")
 
 Create a new folder under the CustomSpace directory (e.g. AROButtons) of your Cireson portal server(s) and copy the custom_PulseSaveNextBtn.js file in to the new folder.
 If you do not already have a Script Loader function in your custom.js, you can copy the contents of the scriptloader.js file and paste in to your custom.js.
