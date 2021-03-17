@@ -4,10 +4,10 @@ A PowerShell script to deploy and manage Always On VPN Device and User tunnels u
 ## To use
 There are a few prerequisites to use this script. These are:
 1. Valid ProfileXML files for Device and User tunnels. I recommend testing these profiles with powershell locally before using this script for deployment:
-  * Microsoft's documentation: https://docs.microsoft.com/en-us/windows-server/remote/remote-access/vpn/always-on-vpn/deploy/vpn-deploy-client-vpn-connections
-  * Example ProfileXML files can be downloaded from Richard Hicks' github page here:
-  * https://github.com/richardhicks/aovpn/blob/master/ProfileXML_Device.xml
-  * https://github.com/richardhicks/aovpn/blob/master/ProfileXML_User.xm
+   * Microsoft's documentation: https://docs.microsoft.com/en-us/windows-server/remote/remote-access/vpn/always-on-vpn/deploy/vpn-deploy-client-vpn-connections
+   * Example ProfileXML files can be downloaded from Richard Hicks' github page here:
+   * https://github.com/richardhicks/aovpn/blob/master/ProfileXML_Device.xml
+   * https://github.com/richardhicks/aovpn/blob/master/ProfileXML_User.xm
 
 
 2. Create a new Group Policy Object that is enabled for computer settings and is linked to OUs that contain computer objects that you wish to delpoy the VPN profile to. You may optionally chose to also use a group to filter the policy so that only specific computers will receive the policy.  
