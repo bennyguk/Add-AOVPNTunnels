@@ -14,29 +14,29 @@ There are a few prerequisites to use this script. These are:
 4. Copy the files (Add-OAVPNTunnels.ps1, [New-AovpnConnection.ps1](https://github.com/richardhicks/aovpn/blob/master/New-AovpnConnection.ps1), [profileXML_device.xml](https://github.com/richardhicks/aovpn/blob/master/ProfileXML_Device.xml) and [profileXML_device.xml](https://github.com/richardhicks/aovpn/blob/master/ProfileXML_User.xml)) to a network location that client devices can access to copy the files locally. I have chosen to use the folder that stores that Group Policy created earlier for central mangement and fault tolerance as the files will be replicated to all domain controllers. (\\domain.com\SYSVOL\domain.com\Policies\{75F40CD7-4B93-4258-AC30-9F6C21FDA399}\Machine\Scripts\*)  
 5. Configure the Files Preference in the new policy:
    * Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
-   * In the [general tab](/GPPCreateFileGeneral.JPG?raw=true "GPP Files general tab"), configure the source folder for your script and ProfileXML files followed by '\\*'.
+   * In the [general tab](/images/GPPCreateFileGeneral.JPG?raw=true "GPP Files general tab"), configure the source folder for your script and ProfileXML files followed by '\\*'.
    * Specify a local destination folder. I have chosen to create a new folder under the Windows directory. GPP will automaticall create the folder if it is missing.
    * Make sure the Action is replace.
-   * In the [common tab](/GPPCreateFileCommon.JPG?raw=true "GPP Files common tab") check the box 'Remove this item when it is no longer required'.
+   * In the [common tab](/images/GPPCreateFileCommon.JPG?raw=true "GPP Files common tab") check the box 'Remove this item when it is no longer required'.
 
 6. Configure the Scheduled Tasks Preference in the new policy:
    * Computer Configuration -> Preferences -> Control Panel Settings -> Scueduled Tasks. New Scheduled Tasks (At least Windows 7):
-   * [General Tab:](/GPPTasksGeneral.JPG?raw=true "GPP Files general tab")
+   * [General Tab:](/images/GPPTasksGeneral.JPG?raw=true "GPP Files general tab")
      * Action: Replace
      * Give the task a name.
      * Use the NT AUTHORITY\SYSTEM account.
      * Check the box 'Run with highest privileges'.
      * Configure for: Windows 7, Windows Server 2008 R2. (If there is a later OS, choose that instead).  
-   * [Triggers:](/GPPTasksTriggers.JPG?raw=true "GPP Files common tab")
+   * [Triggers:](/images/GPPTasksTriggers.JPG?raw=true "GPP Files common tab")
      * Add a new trigger to run at log on (I tried with 'at startup', but could not get it to run reliably).
      * Configure the task to run for any user.  
-   * [Actions:](/GPPTasksActions.JPG?raw=true "GPP Files common tab")
+   * [Actions:](/images/GPPTasksActions.JPG?raw=true "GPP Files common tab")
      * Action: Start a program
      * Program/Script: PowerShell
      * Add arguments(optional): `-ExecutionPolicy Bypass -File "%windir%\AOVPN\AddAOVPNTunnels.ps1"`  
-   * [Settings:](/GPPTasksSettings.JPG?raw=true "GPP Files common tab")
+   * [Settings:](/images/GPPTasksSettings.JPG?raw=true "GPP Files common tab")
      * Tick 'Allow task to be run on demand' (for troubleshooting).  
-   * [Common:](/GPPTasksCommon.JPG?raw=true "GPP Files common tab")
+   * [Common:](/images/GPPTasksCommon.JPG?raw=true "GPP Files common tab")
      * Tick 'Remove this item when it is no longer applied'.  
 
 ## More information
