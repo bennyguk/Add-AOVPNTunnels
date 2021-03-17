@@ -17,32 +17,32 @@ There are a few prerequisites to use this script. These are:
 
 5. Configure a Files Preference in the new policy:
    * Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
-   * [General tab](/images/GPPCreateFileGeneral.JPG?raw=true "GPP Files general tab"):
-     * Configure the source folder for your script and ProfileXML files followed by '\\\*'. This will copy all files in the folder.
-     * Specify a local destination folder. I have chosen to create a new folder under the local Windows directory using the %windir% environment variable. GPP will automaticall create the folder if it is missing.
-     * Action: Replace.
-   * [Common tab](/images/GPPCreateFileCommon.JPG?raw=true "GPP Files common tab")
-     * Check the box 'Remove this item when it is no longer required'.
+     * [General tab](/images/GPPCreateFileGeneral.JPG?raw=true "GPP Files general tab"):
+       * Configure the source folder for your script and ProfileXML files followed by '\\\*'. This will copy all files in the folder.
+       * Specify a local destination folder. I have chosen to create a new folder under the local Windows directory using the %windir% environment variable. GPP will automaticall create the folder if it is missing.
+       * Action: Replace.
+     * [Common tab](/images/GPPCreateFileCommon.JPG?raw=true "GPP Files common tab")
+       * Check the box 'Remove this item when it is no longer required'.
 
 6. Configure a Scheduled Tasks Preference in the new policy:
    * Computer Configuration -> Preferences -> Control Panel Settings -> Scueduled Tasks. New Scheduled Tasks (At least Windows 7):
-   * [General Tab:](/images/GPPTasksGeneral.JPG?raw=true "GPP Files general tab")
-     * Action: Replace
-     * Give the task a name.
-     * Use the NT AUTHORITY\SYSTEM account.
-     * Check the box 'Run with highest privileges'.
-     * Configure for: Windows 7, Windows Server 2008 R2. (If there is a later OS, choose that instead).  
-   * [Triggers:](/images/GPPTasksTriggers.JPG?raw=true "GPP Files common tab")
-     * Add a new trigger to run at log on (I tried with 'at startup', but could not get it to run reliably).
-     * Configure the task to run for any user.  
-   * [Actions:](/images/GPPTasksActions.JPG?raw=true "GPP Files common tab")
-     * Action: Start a program
-     * Program/Script: PowerShell
-     * Add arguments(optional): `-ExecutionPolicy Bypass -File "%windir%\AOVPN\AddAOVPNTunnels.ps1"`  
-   * [Settings:](/images/GPPTasksSettings.JPG?raw=true "GPP Files common tab")
-     * Tick 'Allow task to be run on demand' (for troubleshooting).  
-   * [Common:](/images/GPPTasksCommon.JPG?raw=true "GPP Files common tab")
-     * Tick 'Remove this item when it is no longer applied'.  
+     * [General Tab:](/images/GPPTasksGeneral.JPG?raw=true "GPP Files general tab")
+       * Action: Replace
+       * Give the task a name.
+       * Use the NT AUTHORITY\SYSTEM account.
+       * Check the box 'Run with highest privileges'.
+       * Configure for: Windows 7, Windows Server 2008 R2. (If there is a later OS, choose that instead).  
+     * [Triggers:](/images/GPPTasksTriggers.JPG?raw=true "GPP Files common tab")
+       * Add a new trigger to run at log on (I tried with 'at startup', but could not get it to run reliably).
+       * Configure the task to run for any user.  
+     * [Actions:](/images/GPPTasksActions.JPG?raw=true "GPP Files common tab")
+       * Action: Start a program
+       * Program/Script: PowerShell
+       * Add arguments(optional): `-ExecutionPolicy Bypass -File "%windir%\AOVPN\AddAOVPNTunnels.ps1"`  
+     * [Settings:](/images/GPPTasksSettings.JPG?raw=true "GPP Files common tab")
+       * Tick 'Allow task to be run on demand' (for troubleshooting).  
+     * [Common:](/images/GPPTasksCommon.JPG?raw=true "GPP Files common tab")
+       * Tick 'Remove this item when it is no longer applied'.  
 
 ## More information
 **Why Scheduled tasks and not a statup script?** 
