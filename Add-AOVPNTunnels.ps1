@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    A script to deploy Always On VPN Device and User tunnels using Group Policy.
+    A script to deploy and manage Always On VPN Device and User tunnels using Group Policy as an alternative to Microsoft Intune.
 
 .DESCRIPTION
     If you do not have Microsoft Intune, this script can be used as an alternative for the deployment and management of Alway On VPN Device and User tunnels.
