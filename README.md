@@ -13,11 +13,11 @@ There are a few prerequisites to use this script. These are:
 2. Create a new Group Policy Object that is enabled for computer settings and is linked to OUs that contain computer objects that you wish to delpoy the VPN profile to. You may optionally chose to also use a group to filter the policy so that only specific computers will receive the policy.  
 3. Copy the files (Add-OAVPNTunnels, New-AovpnConnection, profileXML_device and profileXML_device) to a network location that client devices can access to copy the files locally. I have chosen to use the folder that stores that Group Policy created earlier for central mangement and fault tolerance as the files will be replicated to all domain controllers.  
 4. Enable the following Preferences in the new policy:
-  * Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
-   * In the general tab, configure the source folder for your script and ProfileXML files followed by \\*
+   * Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
+   * In the general tab, configure the source folder for your script and ProfileXML files followed by '\\*'.
    * Specify a local destination folder. I have chosen to create a new folder under the Windows directory. GPP will automaticall create the folder if it is missing.
    * Make sure the Action is replace.
-   * In the common tab check the box 'Remove this item when it is no longer required'
+   * In the common tab check the box 'Remove this item when it is no longer required'.
 
 ![alt text](/GPPCreateFileGeneral.JPG?raw=true "GPP Files general tab")
 ![alt text](/GPPCreateFileCommon.JPG?raw=true "GPP Files common tab")
