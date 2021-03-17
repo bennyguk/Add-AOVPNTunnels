@@ -12,7 +12,7 @@ There are a few prerequisites to use this script. These are:
 
 2. Create a new Group Policy Object that is enabled for computer settings and is linked to OUs that contain computer objects that you wish to delpoy the VPN profile to. You may optionally chose to also use a group to filter the policy so that only specific computers will receive the policy.  
 3. Copy the files (Add-OAVPNTunnels, New-AovpnConnection, profileXML_device and profileXML_device) to a network location that client devices can access to copy the files locally. I have chosen to use the folder that stores that Group Policy created earlier for central mangement and fault tolerance as the files will be replicated to all domain controllers.  
-4. Enable the following Preferences in the new policy:
+4. Configure the Files Preference in the new policy:
    * Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
    * In the general tab, configure the source folder for your script and ProfileXML files followed by '\\*'.
    * Specify a local destination folder. I have chosen to create a new folder under the Windows directory. GPP will automaticall create the folder if it is missing.
@@ -22,7 +22,26 @@ There are a few prerequisites to use this script. These are:
 ![alt text](/GPPCreateFileGeneral.JPG?raw=true "GPP Files general tab")
 ![alt text](/GPPCreateFileCommon.JPG?raw=true "GPP Files common tab")
 
-`loadScript("/CustomSpace/AROButtons/custom_PulseSaveNextBtn.js",["/RequestOffering/"]);`
+5. Configure the Scheduled Tasks Preference in the new policy:
+   * Computer Configuration -> Preferences -> Control Panel Settings -> Scueduled Tasks. New Scheduled Tasks (At least Windows 7):
+   * General Tab:
+     * Action: Replace
+     * Give the task a name.
+     * Use the NT AUTHORITY\SYSTEM account.
+     * Check the box 'Run with highest privileges'.
+     * Configure for: Windows 7, Windows Server 2008 R2. (If there is a later OS, choose that instead).  
+   * Triggers:
+     * Add a new trigger to run at log on (I tried with 'at startup', but could not get it to run reliably).
+     * Configure the task to run for any user.  
+   * Actions:
+     * Action: Start a program
+     * Program/Script: PowerShell
+     * Add arguments(optional): `-ExecutionPolicy Bypass -File "%windir%\AOVPN\AddAOVPNTunnels.ps1"`  
+   * Settings:
+     * Tick 'Allow task to be run on demand' (for troubleshooting).  
+   * Common:
+     * Tick 'Remove this item when it is no longer applied'.  
+
 
 More information on how to use the Script Loader can be found [here](https://cireson.com/blog/how-to-organize-your-customspace-with-a-script-loader/).
 
