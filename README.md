@@ -13,12 +13,10 @@ There are a few prerequisites to use this script. These are:
 2. Create a new Group Policy Object that is enabled for computer settings and is linked to OUs that contain computer objects that you wish to delpoy the VPN profile to. You may optionally chose to also use a group to filter the policy so that only specific computers will receive the policy.  
 3. Copy the files (Add-OAVPNTunnels, New-AovpnConnection, profileXML_device and profileXML_device) to a network location that client devices can access to copy the files locally. I have chosen to use the folder that stores that Group Policy created earlier for central mangement and fault tolerance as the files will be replicated to all domain controllers.  
 4. Enable the following Preferences in the new policy:
-* Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
+   * Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
 ![Alt text](/GPPCreateFileGeneral.JPG?raw=true "Group Policy Preferences Files general tab.")
 
 ![Alt text](/GPPCreateFileCommon.JPG?raw=true "Group Policy Preferences Files common tab.")
-
-
 
 Create a new folder under the CustomSpace directory (e.g. AROButtons) of your Cireson portal server(s) and copy the custom_PulseSaveNextBtn.js file in to the new folder.
 If you do not already have a Script Loader function in your custom.js, you can copy the contents of the scriptloader.js file and paste in to your custom.js.
