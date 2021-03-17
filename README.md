@@ -19,14 +19,14 @@ There are a few prerequisites to use this script. These are:
   <img width="401" height="454" src="/GPPCreateFileGeneral.JPG?raw=true">
 </p>
 
-* In the general tab, configure the source folder for your script and ProfileXML files followed by \*
-* Specify a local destination folder. I have chosen to create a new folder under the Windows directory. GPP will automaticall create the folder if it is missing.
-* Make sure the Action is replace.
+ * In the general tab, configure the source folder for your script and ProfileXML files followed by \*
+ * Specify a local destination folder. I have chosen to create a new folder under the Windows directory. GPP will automaticall create the folder if it is missing.
+ * Make sure the Action is replace.
 <p align="center">
   <img width="401" height="454" src="/GPPCreateFileCommon.JPG?raw=true">
 </p>
 
-* In the common tab check the box 'Remove this item when it is no longer required'
+ * In the common tab check the box 'Remove this item when it is no longer required'
 
 Create a new folder under the CustomSpace directory (e.g. AROButtons) of your Cireson portal server(s) and copy the custom_PulseSaveNextBtn.js file in to the new folder.
 If you do not already have a Script Loader function in your custom.js, you can copy the contents of the scriptloader.js file and paste in to your custom.js.
