@@ -40,9 +40,7 @@ There are a few prerequisites to use this script. These are:
      * Tick 'Remove this item when it is no longer applied'.  
 
 ## More information
-The reason that I chose to use scheduled tasks that run local script files is because I discovered that startup scripts require a network connection to work. This is not always poossible on portable devices and I found it unreliable on wireless connections.
+**Why Scheduled tasks and not a statup script?** 
+I discovered that startup scripts require a network connection to work. This is not always poossible on portable devices and I found it unreliable on wireless connections.
 
 I have tested the script on Windows 10 version 1909, 2004 and 20H2.
-
-The code has been tested with the v10.1.1.2016 version of the Cireson portal and with IE11, Chrome 87 and Edge.
-
