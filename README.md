@@ -15,7 +15,9 @@ There are a few prerequisites to use this script. These are:
 4. Enable the following Preferences in the new policy:
    * Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
 
-
+<p align="center">
+  <img width="401" height="454" src="/GPPCreateFileGeneral.JPG?raw=true">
+</p>
 
    * In the general tab, configure the source folder for your script and ProfileXML files followed by \\*
    * Specify a local destination folder. I have chosen to create a new folder under the Windows directory. GPP will automaticall create the folder if it is missing.
