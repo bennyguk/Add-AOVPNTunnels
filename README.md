@@ -10,19 +10,21 @@ There are a few prerequisites to use this script. These are:
      * [User ProfileXML example](https://github.com/richardhicks/aovpn/blob/master/ProfileXML_User.xml)  
 3. The script depends on [New-AovpnConnection.ps1](https://github.com/richardhicks/aovpn/blob/master/New-AovpnConnection.ps1) created by Richard Hicks.
 
-3. Create a new Group Policy Object that is enabled for computer settings and is linked to OUs that contain computer objects that you wish to delpoy the VPN profile to. You may optionally chose to also use a group to filter the policy so that only specific computers will receive the policy.  
+3. Create a new Group Policy Object that is enabled for computer settings and is linked to OUs that contain computer objects that you wish to delpoy the VPN profiles to. You may optionally chose to also use a computer group to filter the policy so that only specific computers will receive the policy.  
 4. Copy the files ([Add-OAVPNTunnels.ps1](https://github.com/bennyguk/Add-AOVPNTunnels/blob/main/Add-AOVPNTunnels.ps1), [New-AovpnConnection.ps1](https://github.com/richardhicks/aovpn/blob/master/New-AovpnConnection.ps1), [profileXML_device.xml](https://github.com/richardhicks/aovpn/blob/master/ProfileXML_Device.xml) and [profileXML_device.xml](https://github.com/richardhicks/aovpn/blob/master/ProfileXML_User.xml)) to a network location that client devices can access to copy the files locally. I have chosen to use the folder that stores that Group Policy created earlier for central mangement and fault tolerance as the files will be replicated to all domain controllers. (\\*domain.com*\\SYSVOL\\*domain.com*\\Policies\\*{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}*\\Machine\\Scripts\\*).
 
    To find your policy folder, use the details tab on the GPO to find the Unique ID and substitute it for *{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}* in the line above.
 
-5. Configure the Files Preference in the new policy:
+5. Configure a Files Preference in the new policy:
    * Computer Configuration -> Preferences -> Windows Settings -> Files. Create a new file:
-   * In the [general tab](/images/GPPCreateFileGeneral.JPG?raw=true "GPP Files general tab"), configure the source folder for your script and ProfileXML files followed by '\\*'.
-   * Specify a local destination folder. I have chosen to create a new folder under the Windows directory. GPP will automaticall create the folder if it is missing.
-   * Make sure the Action is replace.
-   * In the [common tab](/images/GPPCreateFileCommon.JPG?raw=true "GPP Files common tab") check the box 'Remove this item when it is no longer required'.  
+   * [General tab](/images/GPPCreateFileGeneral.JPG?raw=true "GPP Files general tab"):
+     * Configure the source folder for your script and ProfileXML files followed by '\\\*'. This will copy all files in the folder.
+     * Specify a local destination folder. I have chosen to create a new folder under the local Windows directory using the %windir% environment variable. GPP will automaticall create the folder if it is missing.
+     * Action: Replace.
+   * [Common tab](/images/GPPCreateFileCommon.JPG?raw=true "GPP Files common tab")
+     * Check the box 'Remove this item when it is no longer required'.
 
-6. Configure the Scheduled Tasks Preference in the new policy:
+6. Configure a Scheduled Tasks Preference in the new policy:
    * Computer Configuration -> Preferences -> Control Panel Settings -> Scueduled Tasks. New Scheduled Tasks (At least Windows 7):
    * [General Tab:](/images/GPPTasksGeneral.JPG?raw=true "GPP Files general tab")
      * Action: Replace
