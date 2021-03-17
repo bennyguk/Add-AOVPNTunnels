@@ -16,9 +16,9 @@
 #>
 
 # Configure script to run in the local directory specified in Group Policy Preferences.
-Set-Location -Path C:\Temp\AOVPN
+Set-Location -Path 'Path'
 
-# Set $Warningpreference to 'stop' so that caught execptions in New-AovpnConnection.ps1 that use Write-Warning output to the Application Event Log.
+# Set $Warningpreference to 'stop' so that caught exceptions in New-AovpnConnection.ps1 that use Write-Warning output to the Application Event Log.
 # Set $ErrorActionPreference to 'Stop' so that unhandled exceptions are displayed in the Event log using Write-Eventlog
 $WarningPreference = "Stop"
 $ErrorActionPreference = "Stop"
@@ -54,7 +54,7 @@ function Install-UserTunnel {
         Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1003 -EntryType Information -Message "AOVPN User Tunnel has been successfully installed."
         }
     Catch {
-        Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1005 -EntryType Error -Message "An error occured installing the User Tunnel. The error details are:`n$_"
+        Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1005 -EntryType Error -Message "An error occurred installing the User Tunnel. The error details are:`n$_"
         }
 }
 
@@ -63,15 +63,10 @@ If (!((Get-VpnConnection -AllUserConnection).Name -eq $DeviceTunnel)) {
     Try {
         Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1000 -EntryType Warning -Message "AOVPN Device Tunnel is not installed."
 
-        # Optional - Display the Device Tunnel on the Network flyout menu
+        # Optional - Display the Device Tunnel on the Network flyout menu - Can only be used to display the status of the tunnel, not connect or disconnect.
         If (!(Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Flyout\VPN' -Name ‘ShowDeviceTunnelInUI’ -ErrorAction SilentlyContinue)) {
         New-Item -Path ‘HKLM:\SOFTWARE\Microsoft\Flyout\VPN’ -Force
         New-ItemProperty -Path ‘HKLM:\Software\Microsoft\Flyout\VPN\’ -Name ‘ShowDeviceTunnelInUI’ -PropertyType DWORD -Value 1 -Force
-        }
-
-        # Delete Direct Access NRPT if it exists
-        If (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient' -ErrorAction SilentlyContinue) {
-        Remove-Item -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient' -Recurse
         }
 
         # Optional - Ensure related services can be started and start if not already started
@@ -83,7 +78,7 @@ If (!((Get-VpnConnection -AllUserConnection).Name -eq $DeviceTunnel)) {
         Install-DeviceTunnel
         }
     Catch {
-        Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1004 -EntryType Error -Message "An error occured installing the Device Tunnel. The error details are:`n`r$_"
+        Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1004 -EntryType Error -Message "An error occurred installing the Device Tunnel. The error details are:`n`r$_"
         }
 }
 Else {
@@ -106,7 +101,7 @@ Else {
                 Set-Content .\profileXML_device.XML.hash -Value $DeviceHash
                 }
             Catch {
-                Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1004 -EntryType Error -Message "An error occured installing the Device Tunnel. The error details are:`n`r$_"
+                Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1004 -EntryType Error -Message "An error occurred installing the Device Tunnel. The error details are:`n`r$_"
             }
         }
     }
@@ -124,7 +119,7 @@ If (!((Get-VpnConnection -AllUserConnection).Name -eq $UserTunnel)) {
         Install-UserTunnel
         }
     Catch {
-        Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1005 -EntryType Error -Message "An error occured installing the User Tunnel. The error details are:`n`r$_"
+        Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1005 -EntryType Error -Message "An error occurred installing the User Tunnel. The error details are:`n`r$_"
         }
 }
 Else {
@@ -147,7 +142,7 @@ Else {
                 Set-Content .\profileXML_User.XML.hash -Value "$UserHash"                
             }
             Catch {
-                Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1005 -EntryType Error -Message "An error occured installing the User Tunnel. The error details are:`n`r$_"
+                Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1005 -EntryType Error -Message "An error occurred installing the User Tunnel. The error details are:`n`r$_"
             }
         }
     }
