@@ -12,7 +12,7 @@
 
     The script must be executed under the context of the SYSTEM account.
     
-    For more information, please see https://github.com/bennyguk
+    For more information, please see https://github.com/bennyguk/Add-AOVPNTunnels
 #>
 
 # Configure script to run in the local directory specified in Group Policy Preferences.
