@@ -1,7 +1,7 @@
 # Add-AOVPNTunnels
 A PowerShell script to deploy and manage Always On VPN Device and User tunnels using Group Policy as an alternative to Microsoft Intune.
 
-The script create hashes of the ProfileXML files to detect changes that need to be applied. If you need to update the VPN client properties, just copy the new files to your network location and the script will do the rest.
+The script creates hashes of the ProfileXML files to detect changes that need to be applied. If you need to update the VPN client properties, just copy the new ProfileXML files to your network location and the script will do the rest.
 
 The script uses Group Policy Preferences to copy files and create a scheduled task to run the script.
 
