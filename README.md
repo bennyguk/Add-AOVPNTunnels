@@ -1,6 +1,10 @@
 # Add-AOVPNTunnels
 A PowerShell script to deploy and manage Always On VPN Device and User tunnels using Group Policy as an alternative to Microsoft Intune.
 
+The script create hashes of the ProfileXML files to detect changes that need to be applied. If you need to update the VPN client properties, just copy the new files to your network location and the script will do the rest.
+
+The script uses Group Policy Preferences to copy files and create a scheduled task to run the script.
+
 ## To use
 There are a few prerequisites to use this script. These are:
 1. Valid ProfileXML files for Device and User tunnels. I recommend testing these profiles with PowerShell on your devices locally before using this script for deployment:
@@ -46,6 +50,6 @@ There are a few prerequisites to use this script. These are:
 
 ## More information
 **Why Scheduled tasks and not a statup script?** 
-I discovered that startup scripts require a network connection to work. This is not always poossible on portable devices and I found it unreliable on wireless connections.
+Startup scripts require a network connection to work because the files must be stored in the GPO folder on the domain controller. This is not always poossible on portable devices and I found it unreliable on wireless connections.
 
 I have tested the script on Windows 10 version 1909, 2004 and 20H2.
