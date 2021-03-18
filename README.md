@@ -49,7 +49,7 @@ There are a few prerequisites to use this script. These are:
        * Tick 'Remove this item when it is no longer applied'.  
 
 ## More information
-**Why Scheduled tasks and not a statup script?** 
+**Why Scheduled tasks and not a statup script?**  
 Startup scripts require a network connection to work because the files must be stored in the GPO folder on the domain controller. This is not always poossible on portable devices and I found it unreliable on wireless connections.
 
 I have tested the script on Windows 10 version 1909, 2004 and 20H2.
