@@ -62,9 +62,9 @@ If (!((Get-VpnConnection -AllUserConnection).Name -eq $DeviceTunnel)) {
         Write-EventLog -LogName "Application" -Source "AOVPN" -EventID 1000 -EntryType Warning -Message "AOVPN Device Tunnel is not installed."
 
         # Optional - Display the Device Tunnel on the Network flyout menu - Can only be used to display the status of the tunnel, not connect or disconnect.
-        If (!(Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Flyout\VPN' -Name �ShowDeviceTunnelInUI� -ErrorAction SilentlyContinue)) {
-            New-Item -Path �HKLM:\SOFTWARE\Microsoft\Flyout\VPN� -Force
-            New-ItemProperty -Path �HKLM:\Software\Microsoft\Flyout\VPN\� -Name �ShowDeviceTunnelInUI� -PropertyType DWORD -Value 1 -Force
+        If (!(Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Flyout\VPN' -Name 'ShowDeviceTunnelInUI' -ErrorAction SilentlyContinue)) {
+            New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Flyout\VPN' -Force
+            New-ItemProperty -Path 'HKLM:\Software\Microsoft\Flyout\VPN\' -Name 'ShowDeviceTunnelInUI' -PropertyType DWORD -Value 1 -Force
         }
 
         # Optional - Ensure related services can be started and start if not already started
