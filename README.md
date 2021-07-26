@@ -12,7 +12,7 @@ There are a few prerequisites to use this script. These are:
    * Example ProfileXML files can be downloaded from Richard Hicks' github page here:
      * [Device profileXML example](https://github.com/richardhicks/aovpn/blob/master/ProfileXML_Device.xml)
      * [User ProfileXML example](https://github.com/richardhicks/aovpn/blob/master/ProfileXML_User.xml)  
-3. The script depends on [New-AovpnConnection.ps1](https://github.com/richardhicks/aovpn/blob/master/New-AovpnConnection.ps1) created by Richard Hicks.
+2. The script depends on [New-AovpnConnection.ps1](https://github.com/richardhicks/aovpn/blob/master/New-AovpnConnection.ps1) created by Richard Hicks.
 
 3. Create a new Group Policy Object that is enabled for computer settings and is linked to OUs that contain computer objects that you wish to delpoy the VPN profiles to. You may optionally chose to also use a computer group to filter the policy so that only specific computers will receive the policy.  
 4. Copy the files ([Add-OAVPNTunnels.ps1](https://github.com/bennyguk/Add-AOVPNTunnels/blob/main/Add-AOVPNTunnels.ps1), [New-AovpnConnection.ps1](https://github.com/richardhicks/aovpn/blob/master/New-AovpnConnection.ps1), [profileXML_device.xml](https://github.com/richardhicks/aovpn/blob/master/ProfileXML_Device.xml) and [profileXML_device.xml](https://github.com/richardhicks/aovpn/blob/master/ProfileXML_User.xml)) to a network location that client devices can access to copy the files locally. I have chosen to use the folder that stores that Group Policy created earlier for central mangement and fault tolerance as the files will be replicated to all domain controllers. (\\*domain.com*\\SYSVOL\\*domain.com*\\Policies\\*{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}*\\Machine\\Scripts\\*).
